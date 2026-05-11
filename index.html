@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Plataforma Educativa</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/logo.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <img src="img/logon2.webp" class="logo">
+
+        <h2>Bienvenido a la plataforma</h2>
+
+        <input type="text" id="nombre" placeholder="Ingresa tu nombre">
+
+        <h3>Selecciona tu avatar</h3>
+
+        <div class="avatars">
+            <img src="img/avatar1.png" onclick="seleccionarAvatar(this)">
+            <img src="img/avatar2.png" onclick="seleccionarAvatar(this)">
+            <img src="img/avatar3.png" onclick="seleccionarAvatar(this)">
+            <img src="img/avatar4.png" onclick="seleccionarAvatar(this)">
+            <img src="img/avatar5.png" onclick="seleccionarAvatar(this)">
+            <img src="img/avatar6.png" onclick="seleccionarAvatar(this)">
+        </div>
+
+        <button onclick="ingresar()">Ingresar</button>
+
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- JS -->
+    <script src="js/bienvenida.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.contenedor{
+    background:white;
+    width:90%;
+    max-width:700px;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+#numero{
+    font-size:90px;
+    margin:10px 0;
+    font-weight:bold;
+    animation: aparecer 0.5s ease;
+}
+
+/* COLORES DINÁMICOS */
+.color1{ color:#ff4757; }
+.color2{ color:#1e90ff; }
+.color3{ color:#2ed573; }
+.color4{ color:#ffa502; }
+.color5{ color:#e84393; }
+
+#imagenes{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:20px 0;
+}
+
+/* ARREGLO DE MANZANAS */
+#imagenes img{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#imagenes img:hover{
+    transform:scale(1.1);
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#667eea;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#5a67d8;
+    transform:translateY(-2px);
+}
+
+/* ESTRELLAS */
+.estrellas{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:scale(0.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
