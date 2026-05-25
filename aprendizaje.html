@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Aprendizaje</title>
@@ -11,27 +12,49 @@
 
 <body>
 
-<div class="contenedor">
+    <!-- CAJA PRINCIPAL -->
+    <div class="contenedor">
 
-    <div class="estrellas" id="estrellas">
-        ⭐
-    </div>
+        <img src="img/iconomate.jpg"
+        class="iconoMate"
+        alt="Icono Matemáticas">
 
-    <h1 id="numero" class="color1">1</h1>
+        <!-- TÍTULO -->
+        <div class="titulo-container">
 
-    <div id="imagenes"></div>
+        <h2 class="titulo">
+        🔢 Aprendamos a contar del 1 al 10
+        </h2>
 
-    <button id="btnSiguiente">
-        Siguiente Número
-    </button>
-
-    <button onclick="volverInicio()">
-        Volver al Inicio
-    </button>
+        <button type="button"
+            class="btnAudioTitulo"
+            onclick="reproducirTitulo()">
+        🔊
+        </button>
 
 </div>
 
-<script src="js/aprendizaje.js"></script>
+
+        <div class="estrellas" id="estrellas">
+            ⭐
+        </div>
+
+        <h1 id="numero" class="color1">1</h1>
+
+        <div id="imagenes"></div>
+
+        <button id="btnSiguiente">
+            Siguiente Número
+        </button>
+
+        <button onclick="volverInicio()">
+            Volver al Inicio
+        </button>
+
+    </div>
+
+    <script src="js/aprendizaje.js"></script>
 
 </body>
+
 </html>
