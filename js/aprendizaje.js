@@ -16,6 +16,7 @@ const sonidoError = new Audio("audio/error.mp3");
 
 let estrellas = 1;
 
+/* INICIAR */
 mostrarNumero();
 
 /* BOTÓN SIGUIENTE */
@@ -41,12 +42,12 @@ btnSiguiente.addEventListener("click", () => {
 
 });
 
-/* MOSTRAR NÚMERO */
+
+
 function mostrarNumero(){
 
     numeroTexto.textContent = numeroActual;
 
-    /* CAMBIAR COLOR */
     let color = (numeroActual % 5) + 1;
 
     numeroTexto.className = "color" + color;
@@ -55,50 +56,87 @@ function mostrarNumero(){
 
     for(let i = 1; i <= numeroActual; i++){
 
+        /* CONTENEDOR */
+        let contenedor = document.createElement("div");
+
+        contenedor.className = "manzana-container";
+
+        /* NUMERO */
+        let numeroVisible = document.createElement("div");
+
+        numeroVisible.className = "numero-visible";
+
+        numeroVisible.innerHTML = i;
+
+        /* IMAGEN */
         let img = document.createElement("img");
 
         img.src = imagen;
 
-        /* CONTAR MANZANAS */
         img.addEventListener("click", () => {
 
             reproducirClick();
 
             hablar(i.toString());
 
+            /* MOSTRAR */
+            numeroVisible.style.opacity = "1";
+
+            numeroVisible.style.transform = "translateY(-10px) scale(1.3)";
+
+            setTimeout(() => {
+
+                numeroVisible.style.opacity = "0";
+
+                numeroVisible.style.transform = "translateY(20px) scale(0.5)";
+
+            }, 800);
+
         });
 
-        imagenesDiv.appendChild(img);
+        contenedor.appendChild(numeroVisible);
+
+        contenedor.appendChild(img);
+
+        imagenesDiv.appendChild(contenedor);
 
     }
-
-    actualizarEstrellas();
 
     hablar("Número " + numeroActual);
 
 }
 
-/* ACTUALIZAR ESTRELLAS */
-function actualizarEstrellas(){
 
-    estrellasDiv.innerHTML = "";
-
-    for(let i=0; i<estrellas; i++){
-
-        estrellasDiv.innerHTML += "⭐";
-
-    }
-
-}
 
 /* HABLAR */
 function hablar(texto){
+
+    speechSynthesis.cancel();
 
     let mensaje = new SpeechSynthesisUtterance(texto);
 
     mensaje.lang = "es-ES";
 
+    mensaje.volume = 1;
+
+    mensaje.rate = 0.9;
+
+    mensaje.pitch = 1;
+
     speechSynthesis.speak(mensaje);
+
+}
+
+/* REPRODUCIR TÍTULO */
+function reproducirTitulo(){
+
+    reproducirClick();
+
+    setTimeout(() => {
+
+        hablar("Aprendamos a contar del uno al diez");
+
+    }, 200);
 
 }
 

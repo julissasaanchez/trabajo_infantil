@@ -10,8 +10,12 @@ let numeroActual = numeros[indiceActual];
 const titulo = document.getElementById("titulo");
 const zonaManzanas = document.getElementById("zonaManzanas");
 const canasta = document.getElementById("canasta");
+const manzanasCanasta = document.getElementById("manzanasCanasta");
 const estrellasDiv = document.getElementById("estrellas");
 const btnRevisar = document.getElementById("btnRevisar");
+const btnHablar = document.getElementById("btnHablar");
+const btnReiniciar = document.getElementById("btnReiniciar");
+const btnSiguienteJuego = document.getElementById("btnSiguienteJuego");
 
 const sonidoClick = new Audio("audio/click.mp3");
 const sonidoOk = new Audio("audio/ok.mp3");
@@ -26,6 +30,8 @@ hablar("Ahora vamos a practicar lo aprendido");
 
 crearJuego();
 
+actualizarEstrellas();
+
 /* CREAR JUEGO */
 function crearJuego(){
 
@@ -34,7 +40,11 @@ function crearJuego(){
         (numeroActual > 1 ? "s" : "") +
         " en la canasta";
 
+    hablar(titulo.textContent);
+
     zonaManzanas.innerHTML = "";
+
+    manzanasCanasta.innerHTML = "";
 
     contador = 0;
 
@@ -55,6 +65,27 @@ function crearJuego(){
     }
 
 }
+
+
+btnHablar.addEventListener("click", () => {
+
+    sonidoClick.currentTime = 0;
+
+    sonidoClick.play();
+
+    hablar(titulo.textContent);
+
+});
+
+
+btnReiniciar.addEventListener("click", ()=>{
+
+    sonidoClick.play();
+
+    reiniciarIntento();
+
+});
+
 
 /* DRAG */
 function drag(e){
@@ -81,12 +112,22 @@ canasta.addEventListener("drop", (e)=>{
 
     sonidoClick.play();
 
-    hablar(contador.toString());
+    /* MANZANA DEBAJO */
+    let img = document.createElement("img");
+
+    img.src = "img/manzana.webp";
+
+    img.classList.add("manzana-canasta");
+
+    manzanasCanasta.appendChild(img);
 
 });
 
+
 /* BOTÓN REVISAR */
 btnRevisar.addEventListener("click", ()=>{
+
+    btnRevisar.disabled = true;
 
     sonidoClick.play();
 
@@ -104,6 +145,8 @@ btnRevisar.addEventListener("click", ()=>{
         hablar("Muy bien");
 
         setTimeout(()=>{
+
+            btnRevisar.disabled = false;
 
             indiceActual++;
 
@@ -126,11 +169,31 @@ btnRevisar.addEventListener("click", ()=>{
     /* INCORRECTO */
     else{
 
-        sonidoError.play();
+    sonidoError.play();
 
-        hablar("Respuesta incorrecta");
+    hablar("Respuesta incorrecta");
+
+    /* QUITAR ESTRELLA */
+    if(estrellas > 0){
+
+        estrellas--;
+
+        actualizarEstrellas();
 
     }
+
+    reiniciarIntento();
+
+    btnRevisar.disabled = false;
+}
+
+});
+
+btnSiguienteJuego.addEventListener("click", ()=>{
+
+    sonidoClick.play();
+
+    window.location.href = "juego2.html";
 
 });
 
@@ -147,12 +210,33 @@ function actualizarEstrellas(){
 
 }
 
+/* REINICIAR */
+function reiniciarIntento(){
+
+    contador = 0;
+
+    manzanasCanasta.innerHTML = "";
+
+}
+
+/* VOZ */
 /* VOZ */
 function hablar(texto){
 
-    let mensaje = new SpeechSynthesisUtterance(texto);
+    speechSynthesis.cancel();
+
+    /* QUITAR EMOJIS */
+    texto = texto.replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, "");
+
+    const mensaje = new SpeechSynthesisUtterance(texto);
 
     mensaje.lang = "es-ES";
+
+    mensaje.volume = 1;
+
+    mensaje.rate = 0.9;
+
+    mensaje.pitch = 1;
 
     speechSynthesis.speak(mensaje);
 
@@ -175,13 +259,24 @@ function finalizarJuego(){
 
     sonidoOk.play();
 
-    hablar("Excelente, terminaste el juego");
-
     titulo.textContent =
         "🏆 ¡Felicitaciones! Terminaste el juego";
 
+    hablar(titulo.textContent);
+
     zonaManzanas.innerHTML = "";
 
+    manzanasCanasta.innerHTML = "";
+
+    /* ELIMINAR CANASTA */
+    canasta.remove();
+
+    /* OCULTAR BOTONES */
     btnRevisar.style.display = "none";
+
+    btnReiniciar.style.display = "none";
+
+    /* MOSTRAR BOTÓN SIGUIENTE */
+    btnSiguienteJuego.style.display = "inline-block";
 
 }

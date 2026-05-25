@@ -88,7 +88,3 @@ setTimeout(() => { window.location.href = "inicio.html"; }, 2500);
 
 
 
-
-
-
-
