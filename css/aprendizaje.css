@@ -1,89 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&display=swap');
+
 body{
+
     margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+
+    font-family:'Fredoka', sans-serif;
+
+    background:linear-gradient(-45deg,#ff9ff3,#667eea,#feca57,#764ba2);
+
+    background-size:400% 400%;
+
+    animation:fondo 12s ease infinite;
+
     min-height:100vh;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
-    color:white;
 }
 
+@keyframes fondo{
+
+    0%{ background-position:0% 50%; }
+
+    50%{ background-position:100% 50%; }
+
+    100%{ background-position:0% 50%; }
+}
+
+/* CONTENEDOR */
 .contenedor{
-    background:white;
+
+    background:rgba(255,255,255,0.95);
+
     width:90%;
-    max-width:700px;
+
+    max-width:750px;
+
     padding:30px;
-    border-radius:20px;
+
+    border-radius:30px;
+
     text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+
+    animation:entrada 0.8s ease;
 }
 
+@keyframes entrada{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ICONO */
+.iconoMate{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    border:5px solid #667eea;
+
+    animation:flotar 3s ease infinite;
+}
+
+@keyframes flotar{
+
+    0%{ transform:translateY(0px); }
+
+    50%{ transform:translateY(-8px); }
+
+    100%{ transform:translateY(0px); }
+}
+
+/* TITULO */
+.titulo{
+
+    color:#5a4fcf !important;
+
+    font-size:42px !important;
+
+    margin-top:10px;
+}
+
+/* NUMERO */
 #numero{
-    font-size:90px;
-    margin:10px 0;
+
+    font-size:110px;
+
     font-weight:bold;
-    animation: aparecer 0.5s ease;
-}
 
-/* COLORES DINÁMICOS */
-.color1{ color:#ff4757; }
-.color2{ color:#1e90ff; }
-.color3{ color:#2ed573; }
-.color4{ color:#ffa502; }
-.color5{ color:#e84393; }
-
-#imagenes{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
     margin:20px 0;
+
+    animation:zoom 0.5s ease;
 }
 
-/* ARREGLO DE MANZANAS */
-#imagenes img{
-    width:80px;
-    height:80px;
-    object-fit:contain;
-    cursor:pointer;
+@keyframes zoom{
+
+    from{
+        transform:scale(0);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* IMAGENES */
+#imagenes{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin:25px 0;
+}
+
+/* MANZANAS */
+.manzana-container img{
+
+    width:90px;
+
     transition:0.3s;
-}
 
-#imagenes img:hover{
-    transform:scale(1.1);
-}
-
-button{
-    padding:12px 20px;
-    border:none;
-    border-radius:10px;
-    background:#667eea;
-    color:white;
-    font-size:16px;
     cursor:pointer;
-    margin:10px;
+}
+
+.manzana-container img:hover{
+
+    transform:scale(1.15) rotate(5deg);
+}
+
+/* BOTONES */
+button{
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#667eea,#764ba2);
+
+    color:white;
+
+    font-size:18px;
+
+    font-family:'Fredoka', sans-serif;
+
+    cursor:pointer;
+
     transition:0.3s;
 }
 
 button:hover{
-    background:#5a67d8;
-    transform:translateY(-2px);
+
+    transform:translateY(-3px) scale(1.05);
+
+    box-shadow:0 10px 20px rgba(102,126,234,0.4);
 }
 
 /* ESTRELLAS */
 .estrellas{
-    font-size:40px;
-    margin-bottom:10px;
-}
 
-@keyframes aparecer{
-    from{
-        opacity:0;
-        transform:scale(0.8);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
+    font-size:45px;
+
+    margin-top:20px;
 }
